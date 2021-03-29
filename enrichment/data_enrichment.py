@@ -17,3 +17,5 @@ tagger = SequenceTagger.load('de-ner')
 
 # run NER over sentence
 tagger.predict(sentence)
+for entity in sentence.get_spans('ner'):
+    print(entity)
