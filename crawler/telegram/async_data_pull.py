@@ -1,4 +1,4 @@
-# Script for the asynchronous data pull for a couple of telegram channel examples
+### Script for the asynchronous data pull for a couple of telegram channel examples
 
 import configparser
 import json
@@ -40,7 +40,12 @@ username = config['Telegram']['username']
 # Create the client and connect
 client = TelegramClient(username, api_id, api_hash)
 
-async def main(phone):
+async def main(phone, user_input_channel):
+    '''Asynchronosly ump messages in a channel as json file
+
+    :param phone: phone number as string
+    :param user_input_channel: channel to pull data from, either given as id or name
+    '''
     await client.start()
     print("Client Created")
     # Ensure you're authorized
@@ -52,9 +57,6 @@ async def main(phone):
             await client.sign_in(password=input('Password: '))
 
     me = await client.get_me()
-
-    #user_input_channel = input('enter entity(telegram URL or entity id):')
-    user_input_channel = 'gerechtigkeitfuersvaterland'
 
     if user_input_channel.isdigit():
         entity = PeerChannel(int(user_input_channel))
@@ -95,4 +97,5 @@ async def main(phone):
         json.dump(all_messages, outfile, cls=DateTimeEncoder)
 
 with client:
-    client.loop.run_until_complete(main(phone))
+    user_input_channel = 'gerechtigkeitfuersvaterland' #to parametrize
+    client.loop.run_until_complete(main(phone, user_input_channel))
