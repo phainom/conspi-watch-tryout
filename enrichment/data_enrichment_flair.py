@@ -7,7 +7,7 @@ from flair.models import SequenceTagger
 
 data = json.load(open('channel_messages.json', 'rb'))
 len(data)
-text = data[0]['message']
+text = data[300]['message'] # probably true casing has to be applied
 
 # make a sentence
 sentence = Sentence(text)

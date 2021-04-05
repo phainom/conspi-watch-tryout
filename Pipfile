@@ -9,6 +9,7 @@ verify_ssl = true
 telethon = "*"
 pandas = "*"
 flair = "*"
+spacy = "*"
 
 [requires]
 python_version = "3.7"
